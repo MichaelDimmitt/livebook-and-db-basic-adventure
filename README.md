@@ -12,4 +12,4 @@ https://github.com/livebook-dev/livebook/blob/main/docs/use_cases.md
 https://github.com/phoenixframework/flame
 
 ## Commands
-asdf plugin list 
+asdf plugin list  
