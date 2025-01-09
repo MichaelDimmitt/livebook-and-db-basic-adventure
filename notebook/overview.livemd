@@ -15,6 +15,7 @@ Go back through the info below and correct mistakes and make updates to wording.
 1. load data from a database - we will do this using a phoenix project.
 2. How to get data updated? Automatically ... and get updates in real time?
 3. You can re-evaluate automatically with that toggle in livebook on a particular code snippet. However, it will only run if some other process causes it to evaluate. (idea: can I have a simple set timeout process to have it continually evaluate and by leaving it open the db query will get updated as needed) (potentially innefficient.)
+3. alt. subscribe to a pubsub solution. Postgrex.Notifications or walex ... both utilize Notify from posgresql to listen to a channel name and send out an event which I think is a db trigger.
 4. Flame integration!!
 
 ```elixir
