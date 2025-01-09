@@ -10,9 +10,20 @@ Someone gave me a quick challenge. Challenges are gifts!
 ## Links:
 https://github.com/livebook-dev/livebook/blob/main/docs/use_cases.md
 https://github.com/phoenixframework/flame
+https://fly.io/blog/livebook-for-app-documentation
+https://github.com/DockYard-Academy/curriculum/wiki/Troubleshooting
 
 ## Commands
 asdf plugin list  
+
+mix phx.new <project name>
+mix deps.get
+mix ecto.create
+mix ecto.setup
+
+~/.mix/escripts/livebook server
+PATH=$PATH:~/.mix/escripts
+
 
 ## Plan
 1. you can also directly run Livebook within the context of your existing application with the help of Mix.install/2
@@ -20,3 +31,4 @@ asdf plugin list
 
 1. you can also directly run Livebook within the context of your existing application with the help of Mix.install/2
 2. add to a mix new project
+
