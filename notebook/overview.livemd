@@ -1,0 +1,61 @@
+# Welcome to Livebook
+
+```elixir
+Mix.Project.get.project()
+```
+
+## ToDo:
+
+Go back through the info below and correct mistakes and make updates to wording. (pending)
+
+## The Meat and Potatoes:
+
+#### The challenge:
+
+1. load data from a database - we will do this using a phoenix project.
+2. How to get data updated? Automatically ... and get updates in real time?
+3. You can re-evaluate automatically with that toggle in livebook on a particular code snippet. However, it will only run if some other process causes it to evaluate. (idea: can I have a simple set timeout process to have it continually evaluate and by leaving it open the db query will get updated as needed) (potentially innefficient.)
+4. Flame integration!!
+
+```elixir
+:observer.start()
+```
+
+## Commands that I use when evaluating a new project
+
+The examples below show what information we can glean from an connecting into an existing phoenix project:
+
+<!-- livebook:{"break_markdown":true} -->
+
+#### Show me app info for the project
+
+```elixir
+:observer.start()
+```
+
+<!-- livebook:{"reevaluate_automatically":true} -->
+
+```elixir
+Mix.Project.get.project()
+```
+
+#### Show me project info
+
+This would let me drill into other items as needed.
+
+<!-- livebook:{"reevaluate_automatically":true} -->
+
+```elixir
+Mix.Project.get.project()
+```
+
+#### Getting a feel for the namespace:
+
+Elixir does not use an import syntax to bring items into files individually.
+Instead, everything is loaded into memory in the namespace and available at all times to any file.
+
+Todo: investigate private modules? Are some things not loaded into memory?
+
+```elixir
+:application.get_all_key(Mix.Project.get.project[:app])
+```

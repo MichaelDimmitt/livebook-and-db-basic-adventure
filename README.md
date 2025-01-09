@@ -13,6 +13,16 @@ https://github.com/phoenixframework/flame
 https://fly.io/blog/livebook-for-app-documentation
 https://github.com/DockYard-Academy/curriculum/wiki/Troubleshooting
 
+Listening to sql
+https://news.ycombinator.com/item?id=36323058
+https://gist.github.com/ColinChartier/59633c1006407478168b52e2318da8e8
+
+https://github.com/elixir-ecto/postgrex/issues/28
+
+Use Notify with psql:
+https://elixirforum.com/t/what-happens-if-an-external-source-changes-the-database/1587
+https://www.postgresql.org/docs/9.5/sql-notify.html
+
 ## Commands
 asdf plugin list  
 

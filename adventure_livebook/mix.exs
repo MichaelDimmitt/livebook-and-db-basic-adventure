@@ -20,7 +20,7 @@ defmodule AdventureLivebook.MixProject do
   def application do
     [
       mod: {AdventureLivebook.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :wx, :observer, :runtime_tools]
     ]
   end
 
