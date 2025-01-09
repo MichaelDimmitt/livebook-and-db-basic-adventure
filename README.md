@@ -23,6 +23,12 @@ Use Notify with psql:
 https://elixirforum.com/t/what-happens-if-an-external-source-changes-the-database/1587
 https://www.postgresql.org/docs/9.5/sql-notify.html
 
+Socket scaffold example from 8 years ago.
+https://github.com/bredikhin/phoenix-postgresql-notify-listen-example
+
+Simpler, setup basic pubsub that I used in elixir radio
+https://github.com/MichaelDimmitt/Elixir-Radio-via-Pid
+
 ## Commands
 asdf plugin list  
 
