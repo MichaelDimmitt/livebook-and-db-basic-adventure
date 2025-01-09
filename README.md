@@ -47,4 +47,4 @@ PATH=$PATH:~/.mix/escripts
 
 1. you can also directly run Livebook within the context of your existing application with the help of Mix.install/2
 2. add to a mix new project
- 
+  
