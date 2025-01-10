@@ -5,6 +5,7 @@ defmodule AdventureLivebookWeb.PostLive.Show do
 
   @impl true
   def mount(_params, _session, socket) do
+    if connected?(socket), do: Blog.subscribe()
     {:ok, socket}
   end
 

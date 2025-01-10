@@ -7,6 +7,7 @@ defmodule AdventureLivebookWeb.PostLive.Index do
   @impl true
   def mount(_params, _session, socket) do
     IO.inspect(socket)
+    if connected?(socket), do: Blog.subscribe()
     {:ok, assign(socket, :posts, list_posts())}
   end
 
@@ -41,6 +42,10 @@ defmodule AdventureLivebookWeb.PostLive.Index do
     {:noreply, assign(socket, :posts, list_posts())}
   end
 
+  @impl true
+  def handle_info({:post_created, post}, socket) do
+    {:no_reply, update(socket, :posts, fn posts -> [post | posts] end)}
+  end
   defp list_posts do
     Blog.list_posts()
   end

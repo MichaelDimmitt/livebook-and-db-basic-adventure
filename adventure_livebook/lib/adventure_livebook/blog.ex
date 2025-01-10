@@ -53,6 +53,7 @@ defmodule AdventureLivebook.Blog do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:post_created)
   end
 
   @doc """
@@ -71,6 +72,15 @@ defmodule AdventureLivebook.Blog do
     post
     |> Post.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:post_updated)
+  end
+  def subscribe do
+    Phoenix.PubSub.subscribe(AdventureLivebook.PubSub, "posts")
+  end
+  defp broadcast({:error, _reason} = error, _event), do: error
+  defp broadcast({:ok, post}, event) do
+    Phoenix.PubSub.broadcast(AdventureLivebook.PubSub, "posts", {event, post})
+    {:ok, post}
   end
 
   @doc """
