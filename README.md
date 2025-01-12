@@ -19,7 +19,7 @@ Someone gave me a quick challenge. Challenges are gifts!
 10. flame integration
 
 ## Links:
-#### Simple, setup basic pubsub that I used in elixir radio
+#### Simple, basic pubsub mix application:
 https://github.com/MichaelDimmitt/Elixir-Radio-via-Pid
 
 #### Using sockets to update all sessions viewing a page in elixir.
