@@ -35,6 +35,9 @@ https://www.postgresql.org/docs/9.5/sql-notify.html
 #### Socket scaffold example from 8 years ago
 https://github.com/bredikhin/phoenix-postgresql-notify-listen-example  
 
+#### Simple Notification Example  
+https://github.com/bredikhin/phoenix-postgresql-notify-listen-example/blob/master/lib/pgsub/application.ex
+
 #### Other links
 https://github.com/livebook-dev/livebook/blob/main/docs/use_cases.md  
 https://github.com/phoenixframework/flame  
