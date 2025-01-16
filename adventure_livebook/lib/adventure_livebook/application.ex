@@ -15,9 +15,10 @@ defmodule AdventureLivebook.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: AdventureLivebook.PubSub},
       # Start the Endpoint (http/https)
-      AdventureLivebookWeb.Endpoint
+      AdventureLivebookWeb.Endpoint,
       # Start a worker by calling: AdventureLivebook.Worker.start_link(arg)
       # {AdventureLivebook.Worker, arg}
+      {AdventureLivebook.Notifications, ["todos_changes"], id: :todos_changes}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
