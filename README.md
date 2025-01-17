@@ -68,9 +68,14 @@ PATH=$PATH:~/.mix/escripts
 
 ## Emplacements and tools for utilizing their full capabilities
 Due to liveview, the following exists out of the box.
-Another title for this section could be playing with <Emplacement/Tool> ... playing with Sockets in elixir
-
 | Technology  | Tools  |          |          |             |             | 
 | ---         | ---    | ---      | ---      |  ---        |  ---        |
 | Sockets     | PubSub | Presence |          |             |             |
 | Database    | Ecto   | Postgres | Postgrex | psql Notify | psql Listen |
+
+
+Due to livebook, the following is available.
+| Technology  | Tools    |          |          |             |             | 
+| ---         | ---      | ---      | ---      |  ---        |  ---        |
+| Livebook    | Markdown | Scripts  |
+
