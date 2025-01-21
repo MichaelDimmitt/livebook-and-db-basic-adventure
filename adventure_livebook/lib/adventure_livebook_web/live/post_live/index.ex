@@ -6,8 +6,7 @@ defmodule AdventureLivebookWeb.PostLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    IO.inspect(socket)
-    if connected?(socket), do: Blog.subscribe()
+    if connected?(socket), do: Blog.subscribe() # Will trigger handle_info functions
     {:ok, assign(socket, :posts, list_posts())}
   end
 
@@ -48,12 +47,10 @@ defmodule AdventureLivebookWeb.PostLive.Index do
   end
 
   @impl true
-  # @spec handle_info({:post_updated, {any(), id}}, any()) :: {:noreply, any()}
   def handle_info({:post_updated, post}, socket) do
-    # IO.inspect(post)
-    # callback = fn %{id: id} -> IO.inspect({"hihihihihihihihihihihihihihihihi", id }) end
+    # callback = fn %{id: id} -> IO.inspect({"test string", id }) end
     # callback.(post)
-    # {:noreply, update(socket, :posts, fn posts -> posts end)}
+
     %{id: id} = post;
     {:noreply, update(socket, :posts, fn posts ->
       Enum.map(posts, fn
@@ -61,22 +58,24 @@ defmodule AdventureLivebookWeb.PostLive.Index do
         x -> x
       end)
     end )}
-    # {:noreply, update(socket, :posts, fn aPost ->
-    #   IO.inspect([post.id, aPost.id, 'yooooooooooooooooo']);
-    #   # if post["id"] == aPost["id"], do: post, else: aPost
-    # end)}
+    # {:noreply, update(socket, :posts, fn posts ->
+    #   Enum.map(posts, fn aPost ->
+    #     if post.id == aPost.id, do: post, else: aPost
+    #   end)
+    # end )}
   end
 
   @impl true
   def handle_info({:post_deleted, post}, socket) do
     # %{id: id} = post
-    # {:noreply, update(socket, :posts, fn posts -> Enum.filter(posts, fn %{id: ^id} -> true end) end)}
+    # {:noreply, update(socket, :posts, fn posts -> Enum.filter(posts, fn %{id: ^id} -> false; _ -> true end) end)}
 
     {:noreply, update(socket, :posts, fn posts -> Enum.filter(posts, fn aPost -> aPost.id != post.id end) end)}
   end
 
   @impl true
-  def handle_info(a, socket) do
+  def handle_info(event, socket) do
+    IO.inspect(["excess handle info reached, fyi", event])
     {:noreply, socket}
   end
 
