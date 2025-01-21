@@ -60,8 +60,11 @@ defmodule AdventureLivebookWeb.PostLive.Index do
         %{id: ^id} -> post
         x -> x
       end)
-      posts end
-    )}
+    end )}
+    # {:noreply, update(socket, :posts, fn aPost ->
+    #   IO.inspect([post.id, aPost.id, 'yooooooooooooooooo']);
+    #   # if post["id"] == aPost["id"], do: post, else: aPost
+    # end)}
   end
 
   @impl true
