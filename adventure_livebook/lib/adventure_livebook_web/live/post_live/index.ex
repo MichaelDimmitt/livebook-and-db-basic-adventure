@@ -44,8 +44,39 @@ defmodule AdventureLivebookWeb.PostLive.Index do
 
   @impl true
   def handle_info({:post_created, post}, socket) do
-    {:no_reply, update(socket, :posts, fn posts -> [post | posts] end)}
+    {:noreply, update(socket, :posts, fn posts -> [post | posts] end)}
   end
+
+  @impl true
+  # @spec handle_info({:post_updated, {any(), id}}, any()) :: {:noreply, any()}
+  def handle_info({:post_updated, post}, socket) do
+    # IO.inspect(post)
+    # callback = fn %{id: id} -> IO.inspect({"hihihihihihihihihihihihihihihihi", id }) end
+    # callback.(post)
+    # {:noreply, update(socket, :posts, fn posts -> posts end)}
+    %{id: id} = post;
+    {:noreply, update(socket, :posts, fn posts ->
+      Enum.map(posts, fn
+        %{id: ^id} -> post
+        x -> x
+      end)
+      posts end
+    )}
+  end
+
+  @impl true
+  def handle_info({:post_deleted, post}, socket) do
+    # %{id: id} = post
+    # {:noreply, update(socket, :posts, fn posts -> Enum.filter(posts, fn %{id: ^id} -> true end) end)}
+
+    {:noreply, update(socket, :posts, fn posts -> Enum.filter(posts, fn aPost -> aPost.id != post.id end) end)}
+  end
+
+  @impl true
+  def handle_info(a, socket) do
+    {:noreply, socket}
+  end
+
   defp list_posts do
     Blog.list_posts()
   end

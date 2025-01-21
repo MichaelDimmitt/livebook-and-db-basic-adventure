@@ -8,11 +8,11 @@ defmodule AdventureLivebook.Notifications do
 
   # channel is passed in at the worker level in application.ex
   def init(channel) do
-    IO.inspect([channel])
+    # IO.inspect([channel])
     {:ok, pid} = Application.get_env(:adventure_livebook, AdventureLivebook.Repo)
       |> Postgrex.Notifications.start_link()
     ref = Postgrex.Notifications.listen!(pid, channel)
-    IO.inspect({pid, ref})
+    # IO.inspect({pid, ref})
     {:ok, {pid}}
     # ref = Postgrex.Notifications.listen!(pid, channel)
     # data = "foo"
@@ -22,9 +22,8 @@ defmodule AdventureLivebook.Notifications do
   end
 
   def handle_info(a,b) do
-    IO.inspect({a,b})
+    # IO.inspect({a,b})
     {:noreply, {a, b}}
-
   end
 
   # todos: what should todo and todos be changed to? post and posts? or blog.post and blog.posts?
