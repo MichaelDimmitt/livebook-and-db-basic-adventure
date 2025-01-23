@@ -10,14 +10,13 @@ LISTEN "channel";
 \df # Tell me the functions and procedures;
 select * from information_schema.triggers; # Tell me the triggers;
 
-## 
+## Database trigger 
 CREATE TRIGGER posts_audit_trigger
 AFTER INSERT OR UPDATE OR DELETE ON posts
-FOR EACH ROW EXECUTE FUNCTION addrows();
+FOR EACH ROW EXECUTE FUNCTION emitOnChange();
 
-
-## Database trigger 
-CREATE OR REPLACE FUNCTION addrows()
+## Emit function
+CREATE OR REPLACE FUNCTION emitOnChange()
 RETURNS TRIGGER AS $$
 BEGIN
   PERFORM pg_notify("channel", "Oh hai!");
