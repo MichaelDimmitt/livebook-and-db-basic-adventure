@@ -1,4 +1,4 @@
-## Livebook-and-db-basic-adventure-also flame integration
+## Liveview-Livebook-and-db-basic-adventure-also flame integration
 Someone gave me a quick challenge. Challenges are gifts!
 
 #### The challenge:
