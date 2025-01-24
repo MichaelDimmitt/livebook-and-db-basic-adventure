@@ -19,21 +19,26 @@ Someone gave me a quick challenge. Challenges are gifts!
 10. flame integration
 
 ## Links:
-#### Simple, setup basic pubsub that I used in elixir radio
+#### Simple, basic pubsub mix application:
 https://github.com/MichaelDimmitt/Elixir-Radio-via-Pid
 
 #### Using sockets to update all sessions viewing a page in elixir.
 https://www.phoenixframework.org/blog/build-a-real-time-twitter-clone-in-15-minutes-with-live-view-and-phoenix-1-5  
 https://www.youtube.com/watch?v=MZvmYaFkNJI  
+
 #### Commit:
 https://github.com/MichaelDimmitt/livebook-and-db-basic-adventure/commit/e24face8515dec95bafddd7aa8dc28cc3f606e02  
 
 #### Use Notify with psql:
+https://tapoueh.org/blog/2018/07/postgresql-listen-notify/  
 https://elixirforum.com/t/what-happens-if-an-external-source-changes-the-database/1587  
 https://www.postgresql.org/docs/9.5/sql-notify.html  
 
 #### Socket scaffold example from 8 years ago
 https://github.com/bredikhin/phoenix-postgresql-notify-listen-example  
+
+#### Simple Notification Example  
+https://github.com/bredikhin/phoenix-postgresql-notify-listen-example/blob/master/lib/pgsub/application.ex
 
 #### Other links
 https://github.com/livebook-dev/livebook/blob/main/docs/use_cases.md  
@@ -63,9 +68,14 @@ PATH=$PATH:~/.mix/escripts
 
 ## Emplacements and tools for utilizing their full capabilities
 Due to liveview, the following exists out of the box.
-Another title for this section could be playing with <Emplacement/Tool> ... playing with Sockets in elixir
-
 | Technology  | Tools  |          |          |             |             | 
 | ---         | ---    | ---      | ---      |  ---        |  ---        |
 | Sockets     | PubSub | Presence |          |             |             |
 | Database    | Ecto   | Postgres | Postgrex | psql Notify | psql Listen |
+
+
+Due to livebook, the following is available.
+| Technology  | Tools    |          |          |             |             | 
+| ---         | ---      | ---      | ---      |  ---        |  ---        |
+| Livebook    | Markdown | Scripts  |
+

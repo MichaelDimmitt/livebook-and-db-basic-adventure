@@ -6,8 +6,7 @@ defmodule AdventureLivebookWeb.PostLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    IO.inspect(socket)
-    if connected?(socket), do: Blog.subscribe()
+    if connected?(socket), do: Blog.subscribe() # Will trigger handle_info functions
     {:ok, assign(socket, :posts, list_posts())}
   end
 
@@ -17,6 +16,7 @@ defmodule AdventureLivebookWeb.PostLive.Index do
   end
 
   defp apply_action(socket, :edit, %{"id" => id}) do
+    # TODO: change to stream assign.
     socket
     |> assign(:page_title, "Edit Post")
     |> assign(:post, Blog.get_post!(id))
@@ -44,9 +44,48 @@ defmodule AdventureLivebookWeb.PostLive.Index do
 
   @impl true
   def handle_info({:post_created, post}, socket) do
-    {:no_reply, update(socket, :posts, fn posts -> [post | posts] end)}
+    # TODO: update to stream insert.
+    {:noreply, update(socket, :posts, fn posts -> Enum.sort([post | posts]) end)}
   end
+
+  @impl true
+  def handle_info({:post_updated, post}, socket) do
+    # callback = fn %{id: id} -> IO.inspect({"test string", id }) end
+    # callback.(post)
+
+    # %{id: id} = post;
+    # {:noreply, update(socket, :posts, fn posts ->
+    #   Enum.map(posts, fn
+    #     %{id: ^id} -> post
+    #     oldPost -> oldPost
+    #   end)
+    # end )}
+
+
+    {:noreply, update(socket, :posts, fn posts ->
+      Enum.map(posts, fn oldPost ->
+        if post.id == oldPost.id, do: post, else: oldPost
+      end)
+    end )}
+  end
+
+  @impl true
+  def handle_info({:post_deleted, post}, socket) do
+    # %{id: id} = post
+    # {:noreply, update(socket, :posts, fn posts -> Enum.filter(posts, fn %{id: ^id} -> false; _ -> true end) end)}
+
+    {:noreply,
+     update(socket, :posts, fn posts ->
+       Enum.filter(posts, fn aPost -> aPost.id != post.id end)
+     end)}
+  end
+
+  @impl true
+  def handle_info(event, socket) do
+    {:noreply, socket}
+  end
+
   defp list_posts do
-    Blog.list_posts()
+    Blog.list_posts() # TODO: should list be sorted?
   end
 end

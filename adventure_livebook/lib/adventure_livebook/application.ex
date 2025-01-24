@@ -15,9 +15,11 @@ defmodule AdventureLivebook.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: AdventureLivebook.PubSub},
       # Start the Endpoint (http/https)
-      AdventureLivebookWeb.Endpoint
+      AdventureLivebookWeb.Endpoint,
       # Start a worker by calling: AdventureLivebook.Worker.start_link(arg)
       # {AdventureLivebook.Worker, arg}
+      # {AdventureLivebook.Notifications, ["channel"], id: :channel} # not a fan of id and label being the same.
+      {AdventureLivebook.Notifications, "channel"} # not a fan of id and label being the same.
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
