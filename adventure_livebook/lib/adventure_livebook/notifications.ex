@@ -1,6 +1,5 @@
 defmodule AdventureLivebook.Notifications do
   use GenServer
-  alias AdventureLivebook.{AdventureLivebook.Blog.Post, Repo}
   # import Poison, only: [decode!: 1] # does poison need to be added to mix.exs?
   def start_link(channel) do
     GenServer.start_link(__MODULE__, channel)
@@ -22,7 +21,7 @@ defmodule AdventureLivebook.Notifications do
   end
 
   def handle_info(a,b) do
-    # IO.inspect({a,b})
+    IO.inspect({a,b})
     {:noreply, {a, b}}
   end
 

@@ -16,6 +16,7 @@ defmodule AdventureLivebookWeb.PostLive.Index do
   end
 
   defp apply_action(socket, :edit, %{"id" => id}) do
+    # TODO: change to stream assign.
     socket
     |> assign(:page_title, "Edit Post")
     |> assign(:post, Blog.get_post!(id))
@@ -43,7 +44,8 @@ defmodule AdventureLivebookWeb.PostLive.Index do
 
   @impl true
   def handle_info({:post_created, post}, socket) do
-    {:noreply, update(socket, :posts, fn posts -> [post | posts] end)}
+    # TODO: update to stream insert.
+    {:noreply, update(socket, :posts, fn posts -> Enum.sort([post | posts]) end)}
   end
 
   @impl true
@@ -51,18 +53,20 @@ defmodule AdventureLivebookWeb.PostLive.Index do
     # callback = fn %{id: id} -> IO.inspect({"test string", id }) end
     # callback.(post)
 
-    %{id: id} = post;
-    {:noreply, update(socket, :posts, fn posts ->
-      Enum.map(posts, fn
-        %{id: ^id} -> post
-        x -> x
-      end)
-    end )}
+    # %{id: id} = post;
     # {:noreply, update(socket, :posts, fn posts ->
-    #   Enum.map(posts, fn aPost ->
-    #     if post.id == aPost.id, do: post, else: aPost
+    #   Enum.map(posts, fn
+    #     %{id: ^id} -> post
+    #     oldPost -> oldPost
     #   end)
     # end )}
+
+
+    {:noreply, update(socket, :posts, fn posts ->
+      Enum.map(posts, fn oldPost ->
+        if post.id == oldPost.id, do: post, else: oldPost
+      end)
+    end )}
   end
 
   @impl true
@@ -70,16 +74,18 @@ defmodule AdventureLivebookWeb.PostLive.Index do
     # %{id: id} = post
     # {:noreply, update(socket, :posts, fn posts -> Enum.filter(posts, fn %{id: ^id} -> false; _ -> true end) end)}
 
-    {:noreply, update(socket, :posts, fn posts -> Enum.filter(posts, fn aPost -> aPost.id != post.id end) end)}
+    {:noreply,
+     update(socket, :posts, fn posts ->
+       Enum.filter(posts, fn aPost -> aPost.id != post.id end)
+     end)}
   end
 
   @impl true
   def handle_info(event, socket) do
-    IO.inspect(["excess handle info reached, fyi", event])
     {:noreply, socket}
   end
 
   defp list_posts do
-    Blog.list_posts()
+    Blog.list_posts() # TODO: should list be sorted?
   end
 end
